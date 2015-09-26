@@ -15,6 +15,19 @@ public enum Rank {
 	KING,
 	ACE;
 	
+	public boolean isRoyal() {
+		switch(this) {
+		case TEN:
+		case JACK:
+		case QUEEN:
+		case KING:
+		case ACE:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
 	public boolean isBefore(Rank other) {
 		return this.compareTo(other) == -1;
 	}

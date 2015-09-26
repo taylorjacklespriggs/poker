@@ -10,7 +10,7 @@ import poker.card.Suit;
 
 public class CardTest {
 	
-	public void testConstructor(Rank r, Suit s) {
+	private void testConstructor(Rank r, Suit s) {
 		Card c = new Card(r, s);
 		assertEquals(c.getRank(), r);
 		assertEquals(c.getSuit(), s);

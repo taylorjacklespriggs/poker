@@ -18,5 +18,16 @@ public class RankTest {
 		assertFalse("QUEEN is not after KING", Rank.QUEEN.isAfter(Rank.KING));
 		assertFalse("TWO is not after ACE", Rank.TWO.isAfter(Rank.ACE));
 	}
+	
+	@Test
+	public void checkRoyalty() {
+		assertTrue("TEN is royal", Rank.TEN.isRoyal());
+		assertTrue("JACK is royal", Rank.JACK.isRoyal());
+		assertTrue("QUEEN is royal", Rank.QUEEN.isRoyal());
+		assertTrue("KING is royal", Rank.KING.isRoyal());
+		assertTrue("ACE is royal", Rank.ACE.isRoyal());
+		assertFalse("TWO is not royal", Rank.TWO.isRoyal());
+		assertFalse("NINE is not royal", Rank.NINE.isRoyal());
+	}
 
 }

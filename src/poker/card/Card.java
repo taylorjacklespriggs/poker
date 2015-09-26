@@ -1,6 +1,7 @@
 package poker.card;
 
 public class Card {
+	
 	private Rank rank;
 	private Suit suit;
 	
