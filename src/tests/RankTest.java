@@ -9,14 +9,14 @@ public class RankTest {
 
 	@Test
 	public void compareRanks() {
-		assertTrue(Rank.ACE.compareTo(Rank.KING) > 0); // ACE is higher than KING
-		assertTrue(Rank.KING.compareTo(Rank.ACE) < 0); // KING is lower than ACE
-		assertTrue(Rank.ACE.compareTo(Rank.TWO) > 0); // ACE is higher than TWO
-		assertTrue(Rank.TWO.compareTo(Rank.JACK) < 0); // TWO is lower than JACK
-		assertTrue(Rank.THREE.isBefore(Rank.FOUR));
-		assertTrue(Rank.QUEEN.isAfter(Rank.JACK));
-		assertFalse(Rank.QUEEN.isAfter(Rank.KING));
-		assertFalse(Rank.TWO.isAfter(Rank.ACE));
+		assertTrue("ACE is higher than KING", Rank.ACE.compareTo(Rank.KING) > 0);
+		assertTrue("KING is lower than ACE", Rank.KING.compareTo(Rank.ACE) < 0);
+		assertTrue("ACE is higher than TWO", Rank.ACE.compareTo(Rank.TWO) > 0);
+		assertTrue("TWO is lower than JACK", Rank.TWO.compareTo(Rank.JACK) < 0);
+		assertTrue("THREE is before FOUR", Rank.THREE.isBefore(Rank.FOUR));
+		assertTrue("QUEEN is after JACK", Rank.QUEEN.isAfter(Rank.JACK));
+		assertFalse("QUEEN is not after KING", Rank.QUEEN.isAfter(Rank.KING));
+		assertFalse("TWO is not after ACE", Rank.TWO.isAfter(Rank.ACE));
 	}
 
 }
