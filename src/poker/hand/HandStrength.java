@@ -30,11 +30,15 @@ implements Comparable<HandStrength> // natural ordering is lowest to highest str
 	
 	private Value value;
 	
-	protected HandStrength(Value val) {
-		value = val;
+	protected HandStrength() {
+		value = null;
 	}
 	
-	protected Value getValue() {
+	public Value getValue() {
 		return value;
+	}
+	
+	protected void setValue(Value val) {
+		value = val;
 	}
 }
