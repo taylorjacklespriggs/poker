@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import poker.Hand;
 import poker.card.Card;
 import poker.card.Rank;
 import poker.card.Suit;
+import poker.hand.Hand;
 
 public class HandTest {
 	

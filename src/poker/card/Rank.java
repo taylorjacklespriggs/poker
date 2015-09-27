@@ -1,6 +1,8 @@
 package poker.card;
 
-public enum Rank {
+public enum Rank
+implements Comparable<Rank> // lowest to highest ordering
+{
 	TWO,
 	THREE,
 	FOUR,
