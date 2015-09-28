@@ -30,12 +30,12 @@ implements Comparable<Rank> // lowest to highest ordering
 		}
 	}
 	
-	public boolean isBefore(Rank other) {
-		return this.compareTo(other) == -1;
+	public boolean isPrevious(Rank other) { // is other previous
+		return compareTo(other) == 1;
 	}
 	
-	public boolean isAfter(Rank other) {
-		return this.compareTo(other) == 1;
+	public boolean isNext(Rank other) { // is other next
+		return compareTo(other) == -1;
 	}
 	
 	public String niceName() {

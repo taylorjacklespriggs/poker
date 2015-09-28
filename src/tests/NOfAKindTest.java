@@ -8,11 +8,6 @@ import poker.card.Card;
 import poker.card.Rank;
 import poker.card.Suit;
 import poker.hand.Hand;
-import poker.hand.strength.FourOfAKind;
-import poker.hand.strength.NOfAKind;
-import poker.hand.strength.NOfAKind.NoNKindException;
-import poker.hand.strength.OnePair;
-import poker.hand.strength.ThreeOfAKind;
 
 public class NOfAKindTest {
 	
@@ -61,31 +56,44 @@ public class NOfAKindTest {
 			new Card(Rank.ACE, Suit.DIAMONDS)
 			);
 	
-	@Test(expected=NoNKindException.class)
-	public void testConstructor() throws NoNKindException {
-		NOfAKind nok = new OnePair(testHand1);
-		assertEquals("Hand 1 is KING high pair", nok.getRank(), Rank.KING);
+	// HIGH CARD (TEN high)
+	private static Hand testHand6 = new Hand(
+			new Card(Rank.THREE, Suit.HEARTS),
+			new Card(Rank.SIX, Suit.SPADES),
+			new Card(Rank.SEVEN, Suit.CLUBS),
+			new Card(Rank.TWO, Suit.HEARTS),
+			new Card(Rank.TEN, Suit.DIAMONDS)
+			);
+	
+	// HIGH CARD (NINE high)
+	private static Hand testHand7 = new Hand(
+			new Card(Rank.SEVEN, Suit.HEARTS),
+			new Card(Rank.NINE, Suit.SPADES),
+			new Card(Rank.EIGHT, Suit.CLUBS),
+			new Card(Rank.SIX, Suit.HEARTS),
+			new Card(Rank.TWO, Suit.DIAMONDS)
+			);
+	
+	@Test
+	public void testConstructor() {
+		assertEquals("Hand 6 is high card", testHand6.getStrength(), Hand.Strength.HIGH_CARD);
 		
-		nok = new ThreeOfAKind(testHand2);
-		assertEquals("Hand 2 is three TENs", nok.getRank(), Rank.TEN);
+		assertEquals("Hand 1 is one pair", testHand1.getStrength(), Hand.Strength.ONE_PAIR);
 		
-		nok = new FourOfAKind(testHand3);
-		assertEquals("Hand 3 is four THREEs", nok.getRank(), Rank.THREE);
+		assertEquals("Hand 2 is three of a kind", testHand2.getStrength(), Hand.Strength.THREE_OAK);
 		
-		new ThreeOfAKind(testHand1); // no triples
+		assertEquals("Hand 3 is four of a kind", testHand3.getStrength(), Hand.Strength.FOUR_OAK);
 	}
 
 	@Test
-	public void testComparison() throws NoNKindException {
-		NOfAKind nok1 = new OnePair(testHand1);
-		NOfAKind nok2 = new FourOfAKind(testHand3);
-		NOfAKind nok3 = new FourOfAKind(testHand4);
-		NOfAKind nok4 = new OnePair(testHand5);
+	public void testComparison() {
+		assertTrue("Hand 1 is weaker than hand 3", testHand1.compareTo(testHand3) < 0);
 		
-		assertTrue("Hand 1 is weaker than hand 3", nok1.compareTo(nok2) < 0);
-		assertTrue("Hand 1 is weaker than hand 4", nok1.compareTo(nok3) < 0);
-		assertTrue("Hand 3 is weaker than hand 4", nok2.compareTo(nok3) < 0);
-		assertTrue("Hand 1 is equivalent (for this test) than hand 5", nok1.compareTo(nok4) == 0);
+		assertTrue("Hand 1 is weaker than hand 4", testHand1.compareTo(testHand4) < 0);
+		
+		assertTrue("Hand 3 is weaker than hand 4", testHand3.compareTo(testHand4) < 0);
+		
+		assertTrue("Hand 1 is stronger than hand 5", testHand1.compareTo(testHand5) > 0);
 	}
 
 }

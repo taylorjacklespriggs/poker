@@ -13,10 +13,10 @@ public class RankTest {
 		assertTrue("KING is lower than ACE", Rank.KING.compareTo(Rank.ACE) < 0);
 		assertTrue("ACE is higher than TWO", Rank.ACE.compareTo(Rank.TWO) > 0);
 		assertTrue("TWO is lower than JACK", Rank.TWO.compareTo(Rank.JACK) < 0);
-		assertTrue("THREE is before FOUR", Rank.THREE.isBefore(Rank.FOUR));
-		assertTrue("QUEEN is after JACK", Rank.QUEEN.isAfter(Rank.JACK));
-		assertFalse("QUEEN is not after KING", Rank.QUEEN.isAfter(Rank.KING));
-		assertFalse("TWO is not after ACE", Rank.TWO.isAfter(Rank.ACE));
+		assertTrue("FOUR is next from THREE", Rank.THREE.isNext(Rank.FOUR));
+		assertTrue("JACK is previous from QUEEN", Rank.QUEEN.isPrevious(Rank.JACK));
+		assertFalse("KING is not previous to QUEEN", Rank.QUEEN.isPrevious(Rank.KING));
+		assertFalse("ACE is not previous to TWO", Rank.TWO.isPrevious(Rank.ACE));
 	}
 	
 	@Test

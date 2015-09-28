@@ -1,4 +1,4 @@
-package poker.hand.strength;
+package poker.hand;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,18 +6,29 @@ import java.util.List;
 
 import poker.card.Rank;
 
-public class JBOCards // just a bunch of cards
-implements Comparable<JBOCards> {
+public class RankList
+implements Comparable<RankList> {
+	private static final Comparator<Rank> order = new Comparator<Rank>() {
+		@Override
+		public int compare(Rank r1, Rank r2) {
+			return -r1.compareTo(r2);
+		}
+	};
+	
 	private ArrayList<Rank> ranks;
 	
-	public JBOCards(List<Rank> crds) {
+	public RankList(List<Rank> crds) {
 		ranks = new ArrayList<Rank>(crds);
-		ranks.sort(new Comparator<Rank>() {
-			@Override
-			public int compare(Rank r1, Rank r2) {
-				return -r1.compareTo(r2);
-			}
-		}); // highest to lowest
+		sort();
+	}
+	
+	public RankList() {
+		ranks = new ArrayList<Rank>();
+	}
+
+	public void addRank(Rank r) {
+		ranks.add(r);
+		sort();
 	}
 	
 	protected List<Rank> getRankList() {
@@ -25,7 +36,7 @@ implements Comparable<JBOCards> {
 	}
 
 	@Override
-	public int compareTo(JBOCards other) {
+	public int compareTo(RankList other) {
 		List<Rank> otherRanks = other.getRankList();
 		assert(otherRanks.size() == ranks.size());
 		int cmp, i, end;
@@ -40,5 +51,9 @@ implements Comparable<JBOCards> {
 
 	public Iterable<Rank> getRanks() {
 		return ranks;
+	}
+	
+	private void sort() {
+		ranks.sort(order);
 	}
 }

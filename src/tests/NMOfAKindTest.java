@@ -8,10 +8,6 @@ import poker.card.Card;
 import poker.card.Rank;
 import poker.card.Suit;
 import poker.hand.Hand;
-import poker.hand.strength.FullHouse;
-import poker.hand.strength.NMOfAKind;
-import poker.hand.strength.NOfAKind.NoNKindException;
-import poker.hand.strength.TwoPair;
 
 public class NMOfAKindTest {
 	
@@ -52,15 +48,11 @@ public class NMOfAKindTest {
 			);
 
 	@Test
-	public void testComparison() throws NoNKindException {
-		NMOfAKind nmok1 = new TwoPair(testHand1);
-		NMOfAKind nmok2 = new FullHouse(testHand2);
-		NMOfAKind nmok3 = new FullHouse(testHand3);
-		NMOfAKind nmok4 = new TwoPair(testHand4);
+	public void testComparison() {
 		
-		assertTrue("Hand 1 is weaker than hand 2", nmok1.compareTo(nmok2) < 0);
-		assertTrue("Hand 2 is stronger than hand 3", nmok2.compareTo(nmok3) > 0);
-		assertTrue("Hand 1 is stronger than hand 4", nmok1.compareTo(nmok4) > 0);
+		assertTrue("Hand 1 is weaker than hand 2", testHand1.compareTo(testHand2) < 0);
+		assertTrue("Hand 2 is stronger than hand 3", testHand2.compareTo(testHand3) > 0);
+		assertTrue("Hand 1 is stronger than hand 4", testHand1.compareTo(testHand4) > 0);
 	}
 
 }
