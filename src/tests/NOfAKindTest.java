@@ -16,7 +16,7 @@ public class NOfAKindTest {
 			new Card(Rank.KING, Suit.CLUBS),
 			new Card(Rank.KING, Suit.DIAMONDS),
 			new Card(Rank.QUEEN, Suit.SPADES),
-			new Card(Rank.QUEEN, Suit.HEARTS),
+			new Card(Rank.JACK, Suit.HEARTS),
 			new Card(Rank.ACE, Suit.CLUBS)
 			);
 	
