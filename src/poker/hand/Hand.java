@@ -139,6 +139,7 @@ implements Comparable<Hand>
 		for(Rank r : ranks.getRanks()) {
 			if(lr != null && !lr.isPrevious(r))
 				return false;
+			lr = r;
 		}
 		return true;
 	}

@@ -94,6 +94,8 @@ public class NOfAKindTest {
 		assertTrue("Hand 3 is weaker than hand 4", testHand3.compareTo(testHand4) < 0);
 		
 		assertTrue("Hand 1 is stronger than hand 5", testHand1.compareTo(testHand5) > 0);
+		
+		assertTrue("Hand 6 is stronger than hand 7", testHand6.compareTo(testHand7) > 0);
 	}
 
 }
