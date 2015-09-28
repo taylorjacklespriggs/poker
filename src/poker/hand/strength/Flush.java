@@ -1,29 +1,26 @@
-package poker.hand;
+package poker.hand.strength;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import poker.card.Rank;
 import poker.card.Suit;
+import poker.hand.Hand;
 
 public class Flush extends HandStrength {
 	public static class NoFlushException extends Exception {
 		private static final long serialVersionUID = -3843693918945211405L;
 	}
 	
-	private List<Rank> ranks;
+	private JBOCards cards;
 
 	public Flush(Hand hand) throws NoFlushException {
-		Map<Suit, Integer> count = new HashMap<Suit, Integer>();
-		ranks = new ArrayList<Rank>();
-		findFlush(hand);
+		ArrayList<Rank> ranks = new ArrayList<Rank>();
+		findFlush(hand, ranks);
+		cards = new JBOCards(ranks);
 		init();
 	}
 	
-	private void findFlush(Hand h) throws NoFlushException {
+	private static void findFlush(Hand h, ArrayList<Rank> ranks) throws NoFlushException {
 		for(Suit s : Suit.values()) {
 			h.getSuit(s, ranks);
 			if(ranks.size() == 5)
@@ -34,12 +31,6 @@ public class Flush extends HandStrength {
 	}
 	
 	private void init() {
-		ranks.sort(new Comparator<Rank>() {
-			@Override
-			public int compare(Rank r1, Rank r2) {
-				return -r1.compareTo(r2);
-			}
-		}); // Highest card to lowest
 		// check for straight
 		if(isStraight()) {
 			// check for royal flush
@@ -54,7 +45,7 @@ public class Flush extends HandStrength {
 	
 	private boolean isStraight() {
 		Rank lr = null;
-		for(Rank r : ranks) {
+		for(Rank r : cards.getRanks()) {
 			if(lr != null && !r.isBefore(lr))
 				return false;
 			lr = r;
@@ -63,7 +54,7 @@ public class Flush extends HandStrength {
 	}
 	
 	private boolean isRoyal() {
-		for(Rank r : ranks)
+		for(Rank r : cards.getRanks())
 			if(!r.isRoyal())
 				return false;
 		return true;
@@ -74,17 +65,11 @@ public class Flush extends HandStrength {
 		return compareFlush((Flush) other);
 	}
 	
-	protected int compareRank(int idx, Rank r) {
-		return ranks.get(idx).compareTo(r);
+	protected JBOCards getCards() {
+		return cards;
 	}
 	
 	private int compareFlush(Flush other) {
-		int cmp;
-		for(int i = 0; i < ranks.size(); ++i) {
-			cmp = other.compareRank(i, ranks.get(i));
-			if(cmp != 0)
-				return -cmp;
-		}
-		return 0;
+		return getCards().compareTo(other.getCards());
 	}
 }

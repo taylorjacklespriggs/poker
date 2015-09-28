@@ -6,7 +6,9 @@ import java.util.List;
 import poker.card.Card;
 import poker.card.Rank;
 import poker.card.Suit;
-import poker.hand.Flush.NoFlushException;
+import poker.hand.strength.Flush;
+import poker.hand.strength.HandStrength;
+import poker.hand.strength.Flush.NoFlushException;
 
 public class Hand
 implements Comparable<Hand>
@@ -43,12 +45,18 @@ implements Comparable<Hand>
 				++sum;
 		return sum;
 	}
+
+	public void getRanks(ArrayList<Rank> dest) {
+		for(Card c : cards) {
+			dest.add(c.getRank());
+		}
+	}
 	
 	private void evaluateStrength() {
 		try {
 			strength = new Flush(this);
 		} catch(NoFlushException e) {
-			strength = new TwoPair(this);
+			// TODO strength = new TwoPair(this);
 		}
 	}
 }

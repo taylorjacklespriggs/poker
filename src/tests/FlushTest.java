@@ -7,10 +7,10 @@ import org.junit.Test;
 import poker.card.Card;
 import poker.card.Rank;
 import poker.card.Suit;
-import poker.hand.Flush;
-import poker.hand.Flush.NoFlushException;
+import poker.hand.strength.Flush;
+import poker.hand.strength.HandStrength;
+import poker.hand.strength.Flush.NoFlushException;
 import poker.hand.Hand;
-import poker.hand.HandStrength;
 
 public class FlushTest {
 	

@@ -1,4 +1,4 @@
-package poker.hand;
+package poker.hand.strength;
 
 public abstract class HandStrength
 implements Comparable<HandStrength> // natural ordering is lowest to highest strength
